@@ -1,0 +1,96 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+ul,li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app{
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+div:focus{
+  outline: none;
+ }
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+//main-container全局样式
+.app-main{
+  min-height: 100%
+}
+
+.app-container {
+  padding: 20px;
+  width: 100%;
+  min-width: 1200px;
+}
+
+//tony 自定义样式
+._table{width: 100%; font-size: 14px}
+._table td{border-bottom: solid thin #f0f0f0;line-height:23px;padding:12px 10px;color: #606266;text-align: left }
+._table th{border-bottom: solid thin #f0f0f0;line-height:23px;padding:12px 10px;background:#f8f8f8;color:#606266;text-align: left }
+._table tr:hover{background-color: #f5f7fa}
+.box-card{width: 210px;background-color: #fffff7}
+.el-card__body,.el-card__header{padding: 5px 10px}
+p{
+  word-wrap: break-word;
+  word-break: normal
+}

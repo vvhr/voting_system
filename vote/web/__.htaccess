@@ -1,0 +1,8 @@
+RewriteEngine On
+# 从哪里开始替换 /表示从服务器根域名开始
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)\?*$ yiibasic/index.php/$1 [L,QSA]
+# 将所有的字符串转为以下字符串 + 捕捉到的第一部分（$1）
+RewriteRule ^(.*)$ hj_task_manage/web/index.php/$1 [L,QSA]

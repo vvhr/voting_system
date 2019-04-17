@@ -1,0 +1,61 @@
+{
+  "code": 1,
+  "msg": "success",
+  "data": [
+    {
+      "projectName": "测试项目222",
+      "deviceId": 2,
+      "deviceModel": null,
+      "imei": "123456789",
+      "address": "某某科技园16栋",
+      "insName": "admin",
+      "maintenance": "李四",
+      "contactM": null,
+      "projectId": 1
+    },
+    {
+      "projectName": "测试项目222",
+      "deviceId": 1,
+      "deviceModel": null,
+      "imei": "5435793452",
+      "address": "某某科技园15栋",
+      "insName": "admin",
+      "maintenance": "李四",
+      "contactM": null,
+      "projectId": 1
+    },
+    {
+      "projectName": "测试项目222",
+      "deviceId": 443037695023775740,
+      "deviceModel": null,
+      "imei": "1234567891011",
+      "address": "中国深圳",
+      "insName": "admin",
+      "maintenance": "李四",
+      "contactM": null,
+      "projectId": 1
+    },
+    {
+      "projectName": "测试项目222",
+      "deviceId": 443045723051655200,
+      "deviceModel": null,
+      "imei": "1234567891012",
+      "address": "中国深圳2",
+      "insName": "admin",
+      "maintenance": "李四",
+      "contactM": null,
+      "projectId": 1
+    },
+    {
+      "projectName": "测试项目222",
+      "deviceId": 443046046306664450,
+      "deviceModel": null,
+      "imei": "1234567891013",
+      "address": "中国深圳3",
+      "insName": "admin",
+      "maintenance": "李四",
+      "contactM": null,
+      "projectId": 1
+    }
+  ]
+}

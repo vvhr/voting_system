@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><!--必须要加 启用极速模式-->
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"><!--必须要加 启用极速模式-->
+    <title>华建电力生产经营管理系统</title>
+    <script LANGUAGE="JavaScript">
+      function getVendorPrefix() {
+        // 使用body是为了避免在还需要传入元素
+        var body = document.body || document.documentElement,
+          style = body.style,
+          vendor = ['webkit', 'khtml', 'moz', 'ms', 'o'],
+          i = 0
+        while (i < vendor.length) {
+          // 此处进行判断是否有对应的内核前缀
+          if (typeof style[vendor[i] + 'Transition'] === 'string') {
+            return vendor[i]
+          }
+          i++
+        }
+      }
+      if (getVendorPrefix() !== 'webkit') {
+        alert('检测到您的浏览器无法正常访问系统，请将浏览器切换到 极速内核/极速模式！(点击地址栏最右侧的浏览器图标切换)，建议使用 360安全浏览器 、 360极速浏览器 、 搜狗高速浏览器 、 火狐浏览器 ！')
+      }
+    </script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  </head>
+  <body>
+    <script src=<%= htmlWebpackPlugin.options.path %>/tinymce4.7.5/tinymce.min.js></script>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

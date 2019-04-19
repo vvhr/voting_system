@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  BASE_API: '"http://localhost/hj_task_manage/web/index.php/v1"',
+  BASE_API: '"http://localhost/voting_system/vote/web/index.php/v1"',
 })

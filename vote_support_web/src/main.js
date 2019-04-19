@@ -23,9 +23,6 @@ Vue.component('downloadExcel', JsonExcel)
 Vue.use(ElementUI, { locale })
 Vue.use(Print)
 
-import _actionCheck from './components/globalAccess'
-Vue.prototype.actionCheck_ = _actionCheck
-
 Vue.config.productionTip = false
 // Vue.actionCheck = actionCheck
 

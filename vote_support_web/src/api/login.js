@@ -1,6 +1,4 @@
-import request from '@/utils/request'
-import { getBranches } from './branch'
-import { getMyAccess } from './access'
+import request from '../utils/request'
 // api
 export function login(username, password) {
   return request({
@@ -19,16 +17,6 @@ export function getInfo(token) {
     url: '/login/get-info',
     method: 'get',
     params: { token }
-  }).then(userInfo => {
-    return getBranches().then(res => {
-      userInfo.data.branches = res.data
-      return userInfo
-    })
-  }).then(userInfo => {
-    return getMyAccess().then(res => {
-      userInfo.data.myAccessG = res.data
-      return userInfo
-    })
   })
 }
 

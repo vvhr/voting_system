@@ -1,10 +1,10 @@
-import request from '@/utils/request'
-import { _join } from '@/utils/string'
+import request from '../utils/request'
+import { _join } from '../utils/string'
 
 export function getUsers(params) {
   const str = _join(params)
   return request({
-    url: '/user/index?' + str + '&expand=role_name,department_name,branch_name',
+    url: '/user/index?' + str,
     method: 'get'
   })
 }

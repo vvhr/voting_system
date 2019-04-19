@@ -1,94 +1,64 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-      <div class="system-title">华建电力生产经营管理系统</div>
+    <el-form class="login-form" autoComplete="on" :model="loginForm" ref="loginForm" label-position="left">
+      <div class="system-title">在线投票系统</div>
       <hr />
       <div v-if="login_hidden">
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
         </span>
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="off" placeholder="请输入员工姓名" />
+        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="off" placeholder="请输入用户名" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password"></svg-icon>
         </span>
-        <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="off"
+        <el-input name="password" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="off"
           placeholder="请输入密码"></el-input>
-          <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
       </el-form-item>
       </div>
       <el-form-item>
-        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
+
+        <el-button type="success" style="width:58%;" :loading="loading" @click.native.prevent="handleLogin">
           登 录 系 统
         </el-button>
+        <a target="_blank" href="http://localhost:8080/">
+          <el-button type="primary" style="width:38%;float: right">
+            注 册
+          </el-button>
+        </a>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
-
 export default {
   name: 'login',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        this.$message.info('账号格式错误')
-      } else {
-        callback()
-      }
-    }
-    const validatePass = (rule, value, callback) => {
-      if (value.length < 5) {
-        this.$message.info('密码不小于5位')
-      } else {
-        callback()
-      }
-    }
     return {
       login_hidden: false,
       loginForm: {
         username: '',
         password: ''
       },
-      loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePass }]
-      },
-      loading: false,
-      pwdType: 'password'
+      loading: false
     }
   },
   methods: {
-    showPwd() {
-      if (this.pwdType === 'password') {
-        this.pwdType = ''
-      } else {
-        this.pwdType = 'password'
-      }
-    },
     // 视图
     handleLogin() {
       if (this.login_hidden === false) {
         this.login_hidden = true
       } else {
-        this.$refs.loginForm.validate(valid => {
-          if (valid) {
-            this.loading = true
-            this.$store.dispatch('Login', this.loginForm).then(() => {
-              this.loading = false
-              this.$router.push({ path: '/' })
-            }).catch(() => {
-              this.$message.error('登录失败，账号或密码错误')
-              this.loading = false
-            })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
+        this.loading = true
+        this.$store.dispatch('Login', this.loginForm).then(() => {
+          this.loading = false
+          this.$router.push({ path: '/' })
+        }).catch(() => {
+          this.$message.error('登录失败，账号或密码错误')
+          this.loading = false
         })
       }
     }
@@ -149,14 +119,13 @@ $light_gray:#eee;
   position: fixed;
   height: 100%;
   width: 100%;
-  background: url("http://oa-api.hjdlwl.com/background/08.jpg") no-repeat;
-  /*background: url("http://localhost/hj_task_manage/web/background/08.jpg") no-repeat;*/
+  background: url("http://localhost/voting_system/vote_support_web/static/background/01.jpg") no-repeat;
   background-size:100% 100%;
   -moz-background-size:100% 100%;
   .login-form {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    /*background-color: rgba(255, 255, 255, 0.3);*/
+    background-color: rgba(48, 49, 51, 0.81);
     position: absolute;
     left: 0;
     right: 0;

@@ -7,9 +7,7 @@ const user = {
     name: '',
     avatar: '',
     roles: [],
-    userId: 1,
-    branches: [],
-    myAccessG: []
+    userId: 1
   },
 
   // 全局状态异变方法
@@ -28,12 +26,6 @@ const user = {
     },
     SET_USER_ID: (state, userId) => {
       state.userId = userId
-    },
-    SET_BRANCHES: (state, branches) => {
-      state.branches = branches
-    },
-    SET_ACCESS: (state, myAccessG) => {
-      state.myAccessG = myAccessG
     }
   },
   // 全局状态异步异变方法
@@ -58,18 +50,10 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo(state.token).then(response => {
           const data = response.data
-          // 强行添加，后期整改。0000000000000000
-          data.roles = ['admin']
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', ['admin'])
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
+          commit('SET_ROLES', ['admin'])
           commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
+          commit('SET_AVATAR', '')
           commit('SET_USER_ID', data.id)
-          commit('SET_BRANCHES', data.branches)
-          commit('SET_ACCESS', data.myAccessG)
           resolve(response)
         }).catch(error => {
           reject(error)

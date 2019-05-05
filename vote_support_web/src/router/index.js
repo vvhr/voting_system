@@ -64,6 +64,13 @@ export const asyncRouterMap = [
         name: 'mine',
         component: () => import('@/views/mine'),
         meta: { title: '我的主题', icon: 'myTask' }
+      },
+      {
+        path: '/one',
+        name: 'one',
+        hidden: true,
+        component: () => import('../views/one'),
+        meta: { title: '在线投票页', icon: 'myTask' }
       }
     ]
   },

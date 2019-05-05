@@ -65,7 +65,6 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password = sha1($this->password);
         $this->created_at = time();
         $this->token_expired_time = $this->created_at + 1800;
-        $this->username = $this->name;
         if($this->save())
             return true;
         return false;

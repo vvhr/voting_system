@@ -8,6 +8,7 @@
           </el-form-item>
           <el-form-item label="主题状态">
             <el-select v-model="searchForm.state" placeholder="全部">
+              <el-option label="待开启" value="0"></el-option>
               <el-option label="已完成" value="2"></el-option>
               <el-option label="进行中" value="1"></el-option>
             </el-select>
@@ -37,17 +38,18 @@
           <el-table-column prop="id" label="id" width="60"></el-table-column>
           <el-table-column label="状态" width="100">
             <template slot-scope="scope">
-              {{ scope.row.state | stateFilter}}
+              <el-tag :type="optionsTagType(scope.row.state)">{{ scope.row.state | stateFilter}}</el-tag>
             </template>
           </el-table-column>
           <el-table-column label="类型" width="100">
             <template slot-scope="scope">
-              {{ scope.row.options_type | optionsTypeFilter}}
+              <el-tag :type="optionsTagType2(scope.row.options_type)">{{ scope.row.options_type | optionsTypeFilter}}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column label="主题名称">
+          <el-table-column label="主题名称" width="400" :show-overflow-tooltip="true">
             <template slot-scope="scope">
-              <el-button type="text">{{scope.row.theme_name}}</el-button>
+              <el-button type="text" size="mini" @click="onClickShowThemeDetail(scope.row.id)">{{scope.row.theme_name}}</el-button><br/>
+              <span>{{scope.row.theme_content}}</span>
             </template>
           </el-table-column>
           <el-table-column prop="user.name" label="创建人" width="120"></el-table-column>
@@ -60,7 +62,7 @@
           </el-table-column>
           <el-table-column label="操作" width="200">
             <template slot-scope="scope">
-              <el-button type="primary" size="mini">查看</el-button>
+              <el-button type="primary" size="mini" @click="onClickShowThemeDetail(scope.row.id)">查看</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -90,8 +92,10 @@
       filters: {
         // 主题状态过滤器
         stateFilter(value) {
-          if (value === 1) return '投票中'
+          if (value === 0) return '待开启'
+          else if (value === 1) return '投票中'
           else if (value === 2) return '已完成'
+          else if (value === 3) return '已取消'
           else return '错误'
         },
         optionsTypeFilter(value) {
@@ -107,6 +111,13 @@
             this.searchForm.totalCount = res.data._meta.totalCount
           })
         },
+        /** 主题名称 被点击事件 */
+        onClickShowThemeDetail(id) {
+          this.$router.push({
+            path: '/one',
+            query: { theme_id: id }
+          })
+        },
         // 一页多少行
         handleSizeChange(pageSize) {
           this.searchForm.pageSize = pageSize
@@ -117,11 +128,32 @@
           this.searchForm.page = currentPage
           this.fetchList()
         },
+        /** 提交查询 */
         onSubmitSearch() {
-          console.log('2')
+          getThemes(this.searchForm).then(res => {
+            this.list = res.data._items
+          })
         },
+        /** 重置查询 */
         onResetSearch() {
+          // 重置对象
           this.searchForm = Object.assign({}, defaultSearchForm)
+          // 刷新表格
+          this.fetchList()
+        },
+        /** 样式过滤器 - 投票状态 - tag样式 */
+        optionsTagType(value) {
+          if (value === 0) return 'primary'
+          else if (value === 1) return 'success'
+          else if (value === 2) return 'danger'
+          else if (value === 3) return 'info'
+          else return 'warning'
+        },
+        /** 样式过滤器 - 投票类型 - tag样式 */
+        optionsTagType2(value) {
+          if (value === 0) return 'primary'
+          else if (value === 1) return 'success'
+          else return '错误'
         }
       },
       mounted() {

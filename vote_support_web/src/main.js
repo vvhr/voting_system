@@ -23,6 +23,10 @@ Vue.component('downloadExcel', JsonExcel)
 Vue.use(ElementUI, { locale })
 Vue.use(Print)
 
+// 注册channel
+import channel from './utils/channel'
+Vue.prototype.$channel = channel
+
 Vue.config.productionTip = false
 // Vue.actionCheck = actionCheck
 
